@@ -11,6 +11,7 @@ rpm-ostree install \
   genisoimage \
   krdp \
   mesa-demos \
+  qemu \
   qemu-ui-sdl \
   snapd \
   spice-gtk-tools \
