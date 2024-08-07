@@ -22,8 +22,6 @@ modules:
       - spice-gtk-tools
       - swtpm
       - zsh
-    remove:
-      - firefox
 
   - type: default-flatpaks
     notify: true
