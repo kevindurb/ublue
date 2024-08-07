@@ -28,6 +28,24 @@ modules:
     system:
       install:
         - org.mozilla.firefox
+        - io.github.dvlv.boxbuddyrs
+        - io.github.fastrizwaan.WineZGUI
+        - io.github.flattool.Warehouse
+        - io.github.philipk.boilr
+        - it.mijorus.gearlever
+        - net.davidotek.pupgui2
       remove: []
+    user:
+      install:
+        - com.bitwarden.desktop
+        - com.freerdp.FreeRDP
+        - com.moonlight_stream.Moonlight
+        - io.github.elevenhsoft.WebApps
+        - net.retrodeck.retrodeck
+        - org.fedoraproject.MediaWriter
+        - org.prismlauncher.PrismLauncher
+        - org.videolan.VLC
+        - com.spotify.Client
+        - com.github.tchx84.Flatseal
 
   - type: signing
