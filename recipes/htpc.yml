@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: htpc
+description: My personal htpc image
+
+base-image: ghcr.io/ublue-os/bazzite-nvidia
+image-version: '40'
+
+modules:
+  - type: rpm-ostree
+    repos: []
+    install:
+      - snapd
+
+  - type: default-flatpaks
+    notify: true
+    system:
+      install:
+        - org.mozilla.firefox
+      remove: []
+    user:
+      install:
+        - com.bitwarden.desktop
+        - com.freerdp.FreeRDP
+        - com.moonlight_stream.Moonlight
+        - io.github.elevenhsoft.WebApps
+        - net.retrodeck.retrodeck
+        - org.fedoraproject.MediaWriter
+        - org.prismlauncher.PrismLauncher
+        - org.videolan.VLC
+        - com.spotify.Client
+        - com.github.tchx84.Flatseal
+
+  - type: signing

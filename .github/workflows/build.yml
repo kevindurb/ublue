@@ -26,7 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         recipe:
-          - recipe.yml
+          - steamdeck.yml
+          - htpc.yml
     steps:
       - name: Build Custom Image
         uses: blue-build/github-action@v1.6
