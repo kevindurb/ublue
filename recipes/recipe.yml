@@ -24,7 +24,6 @@ modules:
       - zsh
     remove:
       - firefox
-      - firefox-langpacks
 
   - type: default-flatpaks
     notify: true
