@@ -1,0 +1,36 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: steamdeck
+description: My personal steam deck image
+
+base-image: ghcr.io/ublue-os/bazzite-deck
+image-version: '40'
+
+modules:
+  - type: rpm-ostree
+    repos: []
+    install:
+      - alacritty
+      - edk2-ovmf
+      - edk2-tools
+      - genisoimage
+      - krdp
+      - mesa-demos
+      - qemu
+      - qemu-ui-sdl
+      - snapd
+      - spice-gtk-tools
+      - swtpm
+      - zsh
+    remove:
+      - firefox
+      - firefox-langpacks
+
+  - type: default-flatpaks
+    notify: true
+    system:
+      install:
+        - org.mozilla.firefox
+      remove: []
+
+  - type: signing
