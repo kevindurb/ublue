@@ -31,4 +31,9 @@ modules:
         - com.spotify.Client
         - com.github.tchx84.Flatseal
 
+  - type: akmods
+    base: fsync
+    install:
+      - rtl88xxau
+
   - type: signing
