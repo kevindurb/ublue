@@ -22,6 +22,10 @@ modules:
       - spice-gtk-tools
       - swtpm
       - zsh
+      - dialog
+      - libvirt
+      - nmap-ncat
+      - virt-manager
 
   - type: default-flatpaks
     notify: true
