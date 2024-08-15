@@ -9,7 +9,9 @@ image-version: '40'
 modules:
   - type: rpm-ostree
     repos: []
-    install: []
+    install:
+      - plasma-mobile
+      - snapd
 
   - type: default-flatpaks
     notify: true
