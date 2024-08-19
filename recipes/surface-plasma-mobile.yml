@@ -13,6 +13,15 @@ modules:
       - plasma-mobile
       - snapd
 
+  - type: systemd
+    system:
+      enabled:
+        - snap-symlink.service
+
+  - type: script
+    scripts:
+      - set-snapd-homedir.sh
+
   - type: default-flatpaks
     notify: true
     system:
