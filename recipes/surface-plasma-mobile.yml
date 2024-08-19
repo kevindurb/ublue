@@ -18,9 +18,10 @@ modules:
       enabled:
         - snap-symlink.service
 
-  - type: script
-    scripts:
-      - set-snapd-homedir.sh
+  - type: files
+    files:
+      - source: system
+        destination: /
 
   - type: default-flatpaks
     notify: true
