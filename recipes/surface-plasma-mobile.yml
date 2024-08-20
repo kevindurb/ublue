@@ -3,14 +3,13 @@
 name: surface-plasma-mobile
 description: My personal image for my surface tablet
 
-base-image: ghcr.io/ublue-os/aurora-dx-surface
+base-image: ghcr.io/ublue-os/bluefin-dx-surface
 image-version: '40'
 
 modules:
   - type: rpm-ostree
     repos: []
     install:
-      - plasma-mobile
       - snapd
 
   - type: systemd

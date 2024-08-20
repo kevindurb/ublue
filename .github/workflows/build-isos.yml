@@ -8,7 +8,7 @@ env:
   IMAGE_REPO: ghcr.io/kevindurb
   IMAGE_TAG: latest
   VERSION: 40
-  VARIANT: kinoite
+  VARIANT: base
 
 jobs:
   build-isos:
