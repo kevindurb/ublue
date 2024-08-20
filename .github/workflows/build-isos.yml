@@ -1,0 +1,47 @@
+---
+name: build-isos
+on:
+  workflow_dispatch:
+
+env:
+  ARCH: amd64
+  IMAGE_REPO: ghcr.io/kevindurb
+  IMAGE_TAG: latest
+  VERSION: 40
+  VARIANT: kinoite
+
+jobs:
+  build-isos:
+    name: Build ISOs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - steamdeck
+          - surface-plasma-mobile
+          # - htpc
+    steps:
+      - name: Build ISO
+        uses: jasonn3/build-container-installer@main
+        id: build
+        with:
+          arch: ${{ env.ARCH }}
+          image_name: ${{ matrix.container }}
+          image_repo: ${{ env.IMAGE_REPO }}
+          image_tag: ${{ env.IMAGE_TAG }}
+          version: ${{ env.VERSION }}
+          variant: ${{ env.VARIANT }}
+          iso_name: ${{ matrix.container }}-${{ env.IMAGE_TAG }}-${{ env.VERSION }}.iso
+
+      - name: Upload ISO as artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.build.outputs.iso_name }}
+          path: |
+            ${{ steps.build.outputs.iso_path }}
+            ${{ steps.build.outputs.iso_path }}-CHECKSUM
+          if-no-files-found: error
+          retention-days: 0
+          compression-level: 0

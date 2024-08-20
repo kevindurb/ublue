@@ -1,5 +1,5 @@
 ---
-name: build-ublue-custom
+name: build-containers
 on:
   pull_request:
     branches:
@@ -15,8 +15,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  bluebuild:
-    name: Build Image
+  build-containers:
+    name: Build Containers
     runs-on: ubuntu-latest
     permissions:
       contents: read
