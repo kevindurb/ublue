@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  ARCH: amd64
+  ARCH: x86_64
   IMAGE_REPO: ghcr.io/kevindurb
   IMAGE_TAG: latest
   VERSION: 40
@@ -33,6 +33,8 @@ jobs:
           version: ${{ env.VERSION }}
           variant: ${{ env.VARIANT }}
           iso_name: ${{ matrix.container }}-${{ env.IMAGE_TAG }}-${{ env.VERSION }}.iso
+          secure_boot_key_url: 'https://github.com/ublue-os/akmods/raw/main/certs/public_key.der'
+          enrollment_password: 'universalblue'
 
       - name: Upload ISO as artifact
         id: upload
