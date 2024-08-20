@@ -31,11 +31,7 @@ modules:
     system:
       enabled:
         - snap-symlink.service
-
-  - type: files
-    files:
-      - source: system
-        destination: /
+        - snapd.service
 
   - type: default-flatpaks
     notify: true
