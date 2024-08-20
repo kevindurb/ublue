@@ -18,7 +18,7 @@ modules:
       enabled:
         - snap-symlink.service
         - snapd.service
-        
+
   - type: default-flatpaks
     notify: true
     system:
@@ -30,5 +30,8 @@ modules:
         - com.bitwarden.desktop
         - io.github.elevenhsoft.WebApps
         - com.spotify.Client
+
+  - type: chezmoi
+    repository: https://github.com/kevindurb/dotfiles
 
   - type: signing
