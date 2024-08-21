@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-name: surface-plasma-mobile
+name: tablet
 description: My personal image for my surface tablet
 
 base-image: ghcr.io/ublue-os/bluefin-dx-surface

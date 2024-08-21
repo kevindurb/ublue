@@ -27,7 +27,7 @@ jobs:
       matrix:
         recipe:
           - steamdeck.yml
-          - surface-plasma-mobile.yml
+          - tablet.yml
           # - htpc.yml
     steps:
       - name: Build Custom Image

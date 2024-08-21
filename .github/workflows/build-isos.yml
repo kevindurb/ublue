@@ -19,7 +19,7 @@ jobs:
       matrix:
         container:
           - steamdeck
-          - surface-plasma-mobile
+          - tablet
           # - htpc
     steps:
       - name: Build ISO
