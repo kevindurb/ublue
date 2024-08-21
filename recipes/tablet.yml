@@ -3,7 +3,7 @@
 name: tablet
 description: My personal image for my surface tablet
 
-base-image: ghcr.io/ublue-os/bluefin-dx-surface
+base-image: ghcr.io/ublue-os/silverblue-surface
 image-version: '40'
 
 modules:
