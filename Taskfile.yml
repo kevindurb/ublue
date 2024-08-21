@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+---
+version: '3'
+
+tasks:
+  build: >
+    bluebuild generate ./recipes/surface-plasma-mobile.yml
+    | docker build -f - --platform=linux/amd64 .

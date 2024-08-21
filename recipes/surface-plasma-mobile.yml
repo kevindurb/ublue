@@ -8,15 +8,17 @@ image-version: '40'
 
 modules:
   - type: rpm-ostree
-    repos: []
+    repos:
+      - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    keys:
+      - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     install:
-      - snapd
+      - brave-browser
+      # - libcurl
+      # - libcurl-devel
+      # - perl-WWW-Curl
 
-  - type: systemd
-    system:
-      enabled:
-        - snap-symlink.service
-        - snapd.service
+  # - type: plucky-install
 
   - type: default-flatpaks
     notify: true
