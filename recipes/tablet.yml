@@ -18,15 +18,18 @@ modules:
       - zsh
       - util-linux
       - tailscale
-      - gnome-shell-extension-tailscale-gnome-qs
-      - gnome-shell-extension-appindicator
-      - gnome-shell-extension-caffeine
-      - gnome-shell-extension-gsconnect
       # - libcurl
       # - libcurl-devel
       # - perl-WWW-Curl
 
   # - type: plucky-install
+
+  - type: gnome-extensions
+    install:
+      - 6139 # Tailscale QS
+      - 615 # AppIndicator
+      - 517 # Caffeine
+      - 1319 # GSConnect
 
   - type: systemd
     system:
