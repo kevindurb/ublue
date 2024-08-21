@@ -20,6 +20,8 @@ modules:
 
   # - type: plucky-install
 
+  - type: brew
+
   - type: default-flatpaks
     notify: true
     system:
