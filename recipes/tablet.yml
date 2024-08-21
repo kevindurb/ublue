@@ -10,17 +10,28 @@ modules:
   - type: rpm-ostree
     repos:
       - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+      - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     keys:
       - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     install:
       - brave-browser
       - zsh
       - util-linux
+      - tailscale
+      - gnome-shell-extension-tailscale-gnome-qs
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-caffeine
+      - gnome-shell-extension-gsconnect
       # - libcurl
       # - libcurl-devel
       # - perl-WWW-Curl
 
   # - type: plucky-install
+
+  - type: systemd
+    system:
+      enabled:
+        - tailscaled.service
 
   - type: brew
 
