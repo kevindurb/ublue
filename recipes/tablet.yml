@@ -11,6 +11,7 @@ modules:
     repos:
       - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
+      - alacritty
       - snapd
       - zsh
       - util-linux
@@ -41,6 +42,9 @@ modules:
         - io.github.elevenhsoft.WebApps
         - com.spotify.Client
         - com.brave.Browser
+        - com.moonlight_stream.Moonlight
+        - org.videolan.VLC
+        - com.github.tchx84.Flatseal
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles

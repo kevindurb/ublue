@@ -8,13 +8,8 @@ image-version: '40'
 
 modules:
   - type: rpm-ostree
-    repos:
-      - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-    keys:
-      - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     install:
       - alacritty
-      - brave-browser
       - dialog
       - edk2-ovmf
       - edk2-tools
