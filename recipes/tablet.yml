@@ -9,18 +9,12 @@ image-version: '40'
 modules:
   - type: rpm-ostree
     repos:
-      - brave-browser.repo
       - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
-      - brave-browser
+      - snapd
       - zsh
       - util-linux
       - tailscale
-      # - libcurl
-      # - libcurl-devel
-      # - perl-WWW-Curl
-
-  # - type: plucky-install
 
   - type: gnome-extensions
     install:
@@ -29,10 +23,13 @@ modules:
       - 517 # Caffeine
       - 1319 # GSConnect
 
+  - type: snap-symlink
+
   - type: systemd
     system:
       enabled:
         - tailscaled.service
+        - snapd.service
 
   - type: brew
 
@@ -43,6 +40,7 @@ modules:
         - com.bitwarden.desktop
         - io.github.elevenhsoft.WebApps
         - com.spotify.Client
+        - com.brave.Browser
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles

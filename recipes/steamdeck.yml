@@ -31,10 +31,11 @@ modules:
       - virt-manager
       - zsh
 
+  - type: snap-symlink
+
   - type: systemd
     system:
       enabled:
-        - snap-symlink.service
         - snapd.service
 
   - type: default-flatpaks
@@ -60,6 +61,7 @@ modules:
         - org.videolan.VLC
         - com.spotify.Client
         - com.github.tchx84.Flatseal
+        - com.brave.Browser
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles
