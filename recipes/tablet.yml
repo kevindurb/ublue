@@ -16,6 +16,8 @@ modules:
       - zsh
       - util-linux
       - tailscale
+    remove:
+      - firefox
 
   - type: gnome-extensions
     install:
