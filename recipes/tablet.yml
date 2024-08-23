@@ -18,7 +18,6 @@ modules:
       - util-linux-user
       - tailscale
       - podman
-      - phosh
     remove:
       - firefox
       - firefox-langpacks
