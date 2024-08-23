@@ -20,6 +20,7 @@ modules:
       - podman
     remove:
       - firefox
+      - firefox-langpacks
 
   # - type: gnome-extensions
   #   install:
