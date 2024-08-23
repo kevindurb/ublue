@@ -15,7 +15,9 @@ modules:
       - snapd
       - zsh
       - util-linux
+      - util-linux-user
       - tailscale
+      - podman
     remove:
       - firefox
 
