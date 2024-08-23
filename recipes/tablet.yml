@@ -3,7 +3,7 @@
 name: tablet
 description: My personal image for my surface tablet
 
-base-image: ghcr.io/ublue-os/silverblue-surface
+base-image: ghcr.io/ublue-os/kinoite-surface
 image-version: '40'
 
 modules:
@@ -19,12 +19,12 @@ modules:
     remove:
       - firefox
 
-  - type: gnome-extensions
-    install:
-      - 6139 # Tailscale QS
-      - 615 # AppIndicator
-      - 517 # Caffeine
-      - 1319 # GSConnect
+  # - type: gnome-extensions
+  #   install:
+  #     - 6139 # Tailscale QS
+  #     - 615 # AppIndicator
+  #     - 517 # Caffeine
+  #     - 1319 # GSConnect
 
   - type: snap-symlink
 
