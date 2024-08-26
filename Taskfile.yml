@@ -3,6 +3,9 @@
 version: '3'
 
 tasks:
-  build: >
-    bluebuild generate ./recipes/surface-plasma-mobile.yml
-    | docker build -f - --platform=linux/amd64 .
+  build:
+    requires:
+      vars: [recipe]
+    cmd: >
+      bluebuild generate ./recipes/{{ .recipe }}.yml
+      | docker build -f - --platform=linux/amd64 .

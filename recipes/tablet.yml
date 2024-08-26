@@ -44,12 +44,13 @@ modules:
     user:
       install:
         - com.bitwarden.desktop
-        - io.github.elevenhsoft.WebApps
-        - com.spotify.Client
         - com.brave.Browser
-        - com.moonlight_stream.Moonlight
-        - org.videolan.VLC
         - com.github.tchx84.Flatseal
+        - com.moonlight_stream.Moonlight
+        - com.spotify.Client
+        - io.github.elevenhsoft.WebApps
+        - org.kde.KStyle.Adwaita
+        - org.videolan.VLC
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles

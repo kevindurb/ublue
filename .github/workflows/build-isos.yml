@@ -20,6 +20,7 @@ jobs:
         container:
           - steamdeck
           - tablet
+          - router
           # - htpc
     steps:
       - name: Build ISO

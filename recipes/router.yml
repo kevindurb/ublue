@@ -1,0 +1,10 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: router
+description: Router image
+
+base-image: ghcr.io/ublue-os/ucore-minimal
+image-version: stable
+
+modules:
+  - type: signing
