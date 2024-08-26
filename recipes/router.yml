@@ -7,4 +7,14 @@ base-image: ghcr.io/ublue-os/ucore-minimal
 image-version: stable
 
 modules:
+  - type: rpm-ostree
+    repos: []
+    install:
+      - dnsmasq
+
+  - type: files
+    files:
+      - source: router
+        destination: /
+
   - type: signing
