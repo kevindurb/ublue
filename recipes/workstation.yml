@@ -43,6 +43,7 @@ modules:
         - org.kde.KStyle.Adwaita
         - org.videolan.VLC
         - com.valvesoftware.Steam
+        - md.obsidian.Obsidian
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles
