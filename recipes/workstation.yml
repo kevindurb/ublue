@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: workstation
+description: My personal image for my workstations
+
+base-image: ghcr.io/ublue-os/kinoite-surface
+image-version: '40'
+
+modules:
+  - type: rpm-ostree
+    repos:
+      - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    install:
+      - alacritty
+      - snapd
+      - zsh
+      - tailscale
+      - podman
+    remove:
+      - firefox
+      - firefox-langpacks
+
+  - type: snap-symlink
+
+  - type: systemd
+    system:
+      enabled:
+        - tailscaled.service
+        - snapd.service
+
+  - type: brew
+
+  - type: default-flatpaks
+    notify: true
+    user:
+      install:
+        - com.bitwarden.desktop
+        - com.brave.Browser
+        - com.github.tchx84.Flatseal
+        - com.moonlight_stream.Moonlight
+        - com.spotify.Client
+        - io.github.elevenhsoft.WebApps
+        - org.kde.KStyle.Adwaita
+        - org.videolan.VLC
+
+  - type: chezmoi
+    repository: https://github.com/kevindurb/dotfiles
+
+  - type: signing
