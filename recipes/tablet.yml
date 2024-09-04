@@ -18,9 +18,12 @@ modules:
       - util-linux-user
       - tailscale
       - podman
+      - tlp
+      - tlp-rdw
     remove:
       - firefox
       - firefox-langpacks
+      - power-profiles-daemon
 
   - type: gnome-extensions
     install:
@@ -36,6 +39,10 @@ modules:
       enabled:
         - tailscaled.service
         - snapd.service
+        - tlp.service
+      masked:
+        - systemd-rfkill.service
+        - systemd-rfkill.socket
 
   - type: brew
 
