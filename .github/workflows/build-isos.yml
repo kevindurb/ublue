@@ -21,6 +21,7 @@ jobs:
           - steamdeck
           - tablet
           - router
+          - workstation
           # - htpc
     steps:
       - name: Build ISO

@@ -29,6 +29,7 @@ jobs:
           - steamdeck.yml
           - tablet.yml
           - router.yml
+          - workstation.yml
           # - htpc.yml
     steps:
       - name: Build Custom Image
