@@ -11,20 +11,21 @@ modules:
     repos:
       - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
-      - alacritty
-      - snapd
-      - zsh
-      - util-linux
-      - util-linux-user
-      - tailscale
-      - podman
-      - tlp
-      - tlp-rdw
       - gnome-shell-extension-gsconnect
-      - heif-pixbuf-loader
+      - gstreamer1-plugin-libav
+      - gstreamer1-plugin-openh264
       - gstreamer1-plugins-base
       - gstreamer1-plugins-good
-      - gstreamer1-plugins-ugly-free
+      - heif-pixbuf-loader
+      - podman
+      - powertop
+      - snapd
+      - tailscale
+      - tlp
+      - tlp-rdw
+      - util-linux
+      - util-linux-user
+      - zsh
     remove:
       - firefox
       - firefox-langpacks
