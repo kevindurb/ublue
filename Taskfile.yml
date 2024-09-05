@@ -8,4 +8,4 @@ tasks:
       vars: [recipe]
     cmd: >
       bluebuild generate ./recipes/{{ .recipe }}.yml
-      | docker build -f - --platform=linux/amd64 .
+      | podman build -f - --platform=linux/amd64 .

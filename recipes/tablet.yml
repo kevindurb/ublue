@@ -20,7 +20,7 @@ modules:
       - podman
       - tlp
       - tlp-rdw
-      - gnome-shell-extensions-gsconnect
+      - gnome-shell-extension-gsconnect
     remove:
       - firefox
       - firefox-langpacks
