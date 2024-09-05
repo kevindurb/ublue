@@ -25,10 +25,6 @@ modules:
       - gstreamer1-plugins-base
       - gstreamer1-plugins-good
       - gstreamer1-plugins-ugly-free
-      - gstreamer1-plugins-gif
-      - gstreamer1-plugins-gtk4
-      - gstreamer1-plugins-libav
-      - gstreamer1-plugins-openh264
     remove:
       - firefox
       - firefox-langpacks
