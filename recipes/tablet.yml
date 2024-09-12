@@ -25,6 +25,7 @@ modules:
       - tlp-rdw
       - util-linux
       - util-linux-user
+      - wl-clipboard
       - zsh
     remove:
       - firefox
