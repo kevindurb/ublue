@@ -63,6 +63,7 @@ modules:
         - io.github.elevenhsoft.WebApps
         - org.kde.KStyle.Adwaita
         - org.videolan.VLC
+        - com.github.d4nj1.tlpui
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles
