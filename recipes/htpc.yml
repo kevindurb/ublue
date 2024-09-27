@@ -8,10 +8,11 @@ image-version: '40'
 
 modules:
   - type: rpm-ostree
-    repos:
-      - https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-40/ublue-os-akmods-fedora-40.repo
+    repos: []
     install:
       - snapd
+
+  - type: snap-symlink
 
   - type: default-flatpaks
     notify: true
