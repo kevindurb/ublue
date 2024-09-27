@@ -11,7 +11,7 @@ modules:
   - from-file: ./shared/remove-firefox.yml
   - from-file: ./shared/codecs.yml
   - from-file: ./shared/flatpaks.yml
-  - from-file: ./shared/rpm-ostree.yml
+  - from-file: ./shared/base-packages.yml
 
   - type: brew
 
