@@ -3,4 +3,10 @@ modules:
   - type: rpm-ostree
     install:
       - snapd
+
   - type: snap-symlink
+
+  - type: systemd
+    system:
+      enabled:
+        - snapd.service

@@ -1,0 +1,12 @@
+---
+modules:
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-%OS_VERSION%/ublue-os-akmods-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/sentry/kernel-fsync-staging/repo/fedora-%OS_VERSION%/sentry-kernel-fsync-staging-fedora-%OS_VERSION%.repo-
+    install: []
+
+  - type: akmods
+    base: main
+    install:
+      - rtl88xxau

@@ -1,0 +1,7 @@
+---
+modules:
+  - type: rpm-ostree
+    install: []
+    remove:
+      - firefox
+      - firefox-langpacks

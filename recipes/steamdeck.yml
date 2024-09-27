@@ -7,9 +7,14 @@ image-version: '40'
 
 modules:
   - from-file: ./shared/snapd.yml
+  - from-file: ./shared/tailscale.yml
+  - from-file: ./shared/remove-firefox.yml
+  - from-file: ./shared/codecs.yml
+  - from-file: ./shared/flatpaks.yml
+  - from-file: ./shared/base-packages.yml
+
   - type: rpm-ostree
     install:
-      - alacritty
       - dialog
       - edk2-ovmf
       - edk2-tools
@@ -23,37 +28,6 @@ modules:
       - spice-gtk-tools
       - swtpm
       - virt-manager
-      - zsh
-
-  - type: systemd
-    system:
-      enabled:
-        - snapd.service
-
-  - type: default-flatpaks
-    notify: true
-    system:
-      install:
-        - io.github.dvlv.boxbuddyrs
-        - io.github.fastrizwaan.WineZGUI
-        - io.github.flattool.Warehouse
-        - io.github.philipk.boilr
-        - it.mijorus.gearlever
-        - net.davidotek.pupgui2
-      remove: []
-    user:
-      install:
-        - com.bitwarden.desktop
-        - com.freerdp.FreeRDP
-        - com.moonlight_stream.Moonlight
-        - io.github.elevenhsoft.WebApps
-        - net.retrodeck.retrodeck
-        - org.fedoraproject.MediaWriter
-        - org.prismlauncher.PrismLauncher
-        - org.videolan.VLC
-        - com.spotify.Client
-        - com.github.tchx84.Flatseal
-        - com.brave.Browser
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles

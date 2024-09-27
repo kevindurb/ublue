@@ -7,61 +7,24 @@ image-version: '40'
 
 modules:
   - from-file: ./shared/snapd.yml
+  - from-file: ./shared/tailscale.yml
+  - from-file: ./shared/remove-firefox.yml
+  - from-file: ./shared/tlp.yml
+  - from-file: ./shared/codecs.yml
+  - from-file: ./shared/flatpaks.yml
+  - from-file: ./shared/base-packages.yml
+
   - type: rpm-ostree
-    repos:
-      - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
       - gnome-shell-extension-gsconnect
-      - gstreamer1-plugin-libav
-      - gstreamer1-plugin-openh264
-      - gstreamer1-plugins-base
-      - gstreamer1-plugins-good
-      - heif-pixbuf-loader
-      - podman
-      - powertop
-      - tailscale
-      - tlp
-      - tlp-rdw
-      - util-linux
-      - util-linux-user
-      - wl-clipboard
-      - zsh
-    remove:
-      - firefox
-      - firefox-langpacks
-      - power-profiles-daemon
+    remove: []
 
   - type: gnome-extensions
     install:
-      - 6139 # Tailscale QS
       - 615 # AppIndicator
       - 517 # Caffeine
 
-  - type: systemd
-    system:
-      enabled:
-        - tailscaled.service
-        - snapd.service
-        - tlp.service
-      masked:
-        - systemd-rfkill.service
-        - systemd-rfkill.socket
-
   - type: brew
-
-  - type: default-flatpaks
-    notify: true
-    user:
-      install:
-        - com.bitwarden.desktop
-        - com.brave.Browser
-        - com.github.tchx84.Flatseal
-        - com.moonlight_stream.Moonlight
-        - com.spotify.Client
-        - io.github.elevenhsoft.WebApps
-        - org.kde.KStyle.Adwaita
-        - org.videolan.VLC
-        - com.github.d4nj1.tlpui
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles

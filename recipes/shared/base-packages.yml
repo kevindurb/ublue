@@ -1,0 +1,8 @@
+---
+modules:
+  - type: rpm-ostree
+    install:
+      - alacritty
+      - wl-clipboard
+      - zsh
+    remove: []

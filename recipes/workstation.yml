@@ -7,40 +7,13 @@ image-version: '40'
 
 modules:
   - from-file: ./shared/snapd.yml
-  - type: rpm-ostree
-    repos:
-      - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-    install:
-      - alacritty
-      - zsh
-      - tailscale
-      - podman
-    remove:
-      - firefox
-      - firefox-langpacks
-
-  - type: systemd
-    system:
-      enabled:
-        - tailscaled.service
-        - snapd.service
+  - from-file: ./shared/tailscale.yml
+  - from-file: ./shared/remove-firefox.yml
+  - from-file: ./shared/codecs.yml
+  - from-file: ./shared/flatpaks.yml
+  - from-file: ./shared/rpm-ostree.yml
 
   - type: brew
-
-  - type: default-flatpaks
-    notify: true
-    user:
-      install:
-        - com.bitwarden.desktop
-        - com.brave.Browser
-        - com.github.tchx84.Flatseal
-        - com.moonlight_stream.Moonlight
-        - com.spotify.Client
-        - io.github.elevenhsoft.WebApps
-        - org.kde.KStyle.Adwaita
-        - org.videolan.VLC
-        - com.valvesoftware.Steam
-        - md.obsidian.Obsidian
 
   - type: chezmoi
     repository: https://github.com/kevindurb/dotfiles

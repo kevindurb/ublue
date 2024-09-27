@@ -7,36 +7,20 @@ image-version: '40'
 
 modules:
   - from-file: ./shared/snapd.yml
+  - from-file: ./shared/tailscale.yml
+  - from-file: ./shared/remove-firefox.yml
+  - from-file: ./shared/codecs.yml
+  - from-file: ./shared/flatpaks.yml
+  - from-file: ./shared/rtl88xxau.yml
+
   - type: rpm-ostree
-    repos:
-      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-%OS_VERSION%.noarch.rpm
-      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-%OS_VERSION%.noarch.rpm
-      - https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-%OS_VERSION%/ublue-os-akmods-fedora-%OS_VERSION%.repo
-      - https://copr.fedorainfracloud.org/coprs/sentry/kernel-fsync-staging/repo/fedora-%OS_VERSION%/sentry-kernel-fsync-staging-fedora-%OS_VERSION%.repo-
-    install: []
-
-  - type: default-flatpaks
-    notify: true
-    system:
-      install:
-        - org.mozilla.firefox
-      remove: []
-    user:
-      install:
-        - com.bitwarden.desktop
-        - com.freerdp.FreeRDP
-        - com.moonlight_stream.Moonlight
-        - io.github.elevenhsoft.WebApps
-        - net.retrodeck.retrodeck
-        - org.fedoraproject.MediaWriter
-        - org.prismlauncher.PrismLauncher
-        - org.videolan.VLC
-        - com.spotify.Client
-        - com.github.tchx84.Flatseal
-
-  - type: akmods
-    base: main
     install:
-      - rtl88xxau
+      - gnome-shell-extension-gsconnect
+    remove: []
+
+  - type: gnome-extensions
+    install:
+      - 615 # AppIndicator
+      - 517 # Caffeine
 
   - type: signing

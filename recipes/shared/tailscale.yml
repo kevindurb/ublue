@@ -1,0 +1,16 @@
+---
+modules:
+  - type: rpm-ostree
+    repos:
+      - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    install:
+      - tailscale
+
+  - type: systemd
+    system:
+      enabled:
+        - tailscaled.service
+
+  - type: gnome-extensions
+    install:
+      - 6139 # Tailscale QS

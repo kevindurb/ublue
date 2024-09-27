@@ -1,0 +1,17 @@
+---
+modules:
+  - type: rpm-ostree
+    install:
+      - powertop
+      - tlp
+      - tlp-rdw
+    remove:
+      - power-profiles-daemon
+
+  - type: systemd
+    system:
+      enabled:
+        - tlp.service
+      masked:
+        - systemd-rfkill.service
+        - systemd-rfkill.socket
