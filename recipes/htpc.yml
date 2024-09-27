@@ -34,7 +34,7 @@ modules:
         - com.github.tchx84.Flatseal
 
   - type: akmods
-    base: fsync
+    base: fsync-ba
     install:
       - rtl88xxau
 
