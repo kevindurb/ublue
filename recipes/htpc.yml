@@ -7,6 +7,11 @@ base-image: ghcr.io/ublue-os/bazzite-nvidia
 image-version: '40'
 
 modules:
+  - type: akmods
+    base: fsync
+    install:
+      - rtl88xxau
+
   - type: rpm-ostree
     repos: []
     install:
@@ -30,9 +35,5 @@ modules:
         - org.videolan.VLC
         - com.spotify.Client
         - com.github.tchx84.Flatseal
-
-  - type: akmods
-    install:
-      - rtl88xxau
 
   - type: signing
