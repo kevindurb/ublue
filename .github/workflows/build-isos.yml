@@ -22,7 +22,7 @@ jobs:
           - tablet
           - router
           - workstation
-          # - htpc
+          - htpc
     steps:
       - name: Build ISO
         uses: jasonn3/build-container-installer@main
