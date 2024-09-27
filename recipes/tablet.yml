@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: tablet
 description: My personal image for my surface tablet
 
@@ -7,6 +6,7 @@ base-image: ghcr.io/ublue-os/silverblue-surface
 image-version: '40'
 
 modules:
+  - from-file: ./shared/snapd.yml
   - type: rpm-ostree
     repos:
       - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
@@ -19,7 +19,6 @@ modules:
       - heif-pixbuf-loader
       - podman
       - powertop
-      - snapd
       - tailscale
       - tlp
       - tlp-rdw
@@ -37,8 +36,6 @@ modules:
       - 6139 # Tailscale QS
       - 615 # AppIndicator
       - 517 # Caffeine
-
-  - type: snap-symlink
 
   - type: systemd
     system:

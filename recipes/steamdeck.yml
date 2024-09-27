@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: steamdeck
 description: My personal steam deck image
 
@@ -7,6 +6,7 @@ base-image: ghcr.io/ublue-os/bazzite-deck
 image-version: '40'
 
 modules:
+  - from-file: ./shared/snapd.yml
   - type: rpm-ostree
     install:
       - alacritty
@@ -20,13 +20,10 @@ modules:
       - nmap-ncat
       - qemu
       - qemu-ui-sdl
-      - snapd
       - spice-gtk-tools
       - swtpm
       - virt-manager
       - zsh
-
-  - type: snap-symlink
 
   - type: systemd
     system:

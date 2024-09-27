@@ -1,0 +1,6 @@
+---
+modules:
+  - type: rpm-ostree
+    install:
+      - snapd
+  - type: snap-symlink

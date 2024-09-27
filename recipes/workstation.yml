@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: workstation
 description: My personal image for my workstations
 
@@ -7,20 +6,18 @@ base-image: ghcr.io/ublue-os/kinoite-surface
 image-version: '40'
 
 modules:
+  - from-file: ./shared/snapd.yml
   - type: rpm-ostree
     repos:
       - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
       - alacritty
-      - snapd
       - zsh
       - tailscale
       - podman
     remove:
       - firefox
       - firefox-langpacks
-
-  - type: snap-symlink
 
   - type: systemd
     system:

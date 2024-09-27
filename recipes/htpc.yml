@@ -1,18 +1,19 @@
 ---
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: htpc
 description: My personal htpc image
 
-base-image: ghcr.io/ublue-os/bazzite-nvidia
+base-image: ghcr.io/ublue-os/silverblue-nvidia
 image-version: '40'
 
 modules:
+  - from-file: ./shared/snapd.yml
   - type: rpm-ostree
-    repos: []
-    install:
-      - snapd
-
-  - type: snap-symlink
+    repos:
+      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-%OS_VERSION%.noarch.rpm
+      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-%OS_VERSION%.noarch.rpm
+      - https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-%OS_VERSION%/ublue-os-akmods-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/sentry/kernel-fsync-staging/repo/fedora-%OS_VERSION%/sentry-kernel-fsync-staging-fedora-%OS_VERSION%.repo-
+    install: []
 
   - type: default-flatpaks
     notify: true
@@ -34,7 +35,7 @@ modules:
         - com.github.tchx84.Flatseal
 
   - type: akmods
-    base: fsync-ba
+    base: main
     install:
       - rtl88xxau
 
