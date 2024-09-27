@@ -7,13 +7,9 @@ base-image: ghcr.io/ublue-os/bazzite-nvidia
 image-version: '40'
 
 modules:
-  - type: akmods
-    base: fsync
-    install:
-      - rtl88xxau
-
   - type: rpm-ostree
-    repos: []
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-40/ublue-os-akmods-fedora-40.repo
     install:
       - snapd
 
@@ -35,5 +31,10 @@ modules:
         - org.videolan.VLC
         - com.spotify.Client
         - com.github.tchx84.Flatseal
+
+  - type: akmods
+    base: fsync
+    install:
+      - rtl88xxau
 
   - type: signing
