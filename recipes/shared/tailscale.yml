@@ -10,7 +10,3 @@ modules:
     system:
       enabled:
         - tailscaled.service
-
-  - type: gnome-extensions
-    install:
-      - 6139 # Tailscale QS

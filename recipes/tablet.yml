@@ -23,6 +23,7 @@ modules:
     install:
       - 615 # AppIndicator
       - 517 # Caffeine
+      - 6139 # Tailscale QS
 
   - type: brew
 
