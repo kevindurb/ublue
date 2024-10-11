@@ -2,7 +2,7 @@
 name: htpc
 description: My personal htpc image
 
-base-image: ghcr.io/ublue-os/silverblue-nvidia
+base-image: ghcr.io/ublue-os/bazzite-nvidia
 image-version: '40'
 
 modules:
@@ -11,7 +11,6 @@ modules:
   - from-file: ./shared/remove-firefox.yml
   - from-file: ./shared/codecs.yml
   - from-file: ./shared/flatpaks.yml
-  - from-file: ./shared/rtl88xxau.yml
 
   - type: rpm-ostree
     install:
