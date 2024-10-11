@@ -8,7 +8,6 @@ image-version: '40'
 modules:
   - from-file: ./shared/snapd.yml
   - from-file: ./shared/tailscale.yml
-  - from-file: ./shared/remove-firefox.yml
   - from-file: ./shared/codecs.yml
   - from-file: ./shared/flatpaks.yml
 
