@@ -34,4 +34,5 @@ jobs:
           -v $(pwd)/config.toml:/config.toml:ro \
           quay.io/centos-bootc/bootc-image-builder:latest \
           --type qcow2 \
+          --rootfs btrfs \
           ghcr.io/kevindurb/${{ matrix.recipe }}
