@@ -2,7 +2,7 @@
 name: htpc
 description: My personal htpc image
 
-base-image: ghcr.io/ublue-os/bazzite-nvidia
+base-image: ghcr.io/ublue-os/bazzite-gnome-nvidia
 image-version: '40'
 
 modules:
