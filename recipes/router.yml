@@ -11,6 +11,7 @@ modules:
     repos: []
     install:
       - dnsmasq
+      - bootc
 
   - type: files
     files:
