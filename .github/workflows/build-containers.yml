@@ -26,17 +26,34 @@ jobs:
       fail-fast: false
       matrix:
         recipe:
-          - steamdeck.yml
-          - tablet.yml
-          - router.yml
-          - workstation.yml
-          - htpc.yml
+          - steamdeck
+          - tablet
+          - router
+          - workstation
+          - htpc
     steps:
       - name: Build Custom Image
         uses: blue-build/github-action@v1.6.1
         with:
-          recipe: ${{ matrix.recipe }}
+          recipe: ${{ matrix.recipe }}.yml
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
+
+      - name: Setup docker with privileged
+        run: dockerd --host=unix:///var/run/docker.sock --privileged
+
+      - name: Setup Image Builder Config
+        run: echo "$IMAGE_BUILDER_CONFIG" > ./config.toml
+        env:
+          IMAGE_BUILDER_CONFIG: ${{ secrets.IMAGE_BUILDER_CONFIG }}
+
+      - name: Build qcow image
+        run: |
+          docker run --rm -it \
+          --security-opt lable=type:unconfined_t \
+          -v $(pwd)/config.toml:/config.toml:ro \
+          quay.io/centos-bootc/bootc-image-builder:latest \
+          --type qcow2 \
+          ghcr.io/kevindurb/${{ matrix.recipe }}
