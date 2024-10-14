@@ -3,7 +3,7 @@ name: workstation
 description: My personal image for my workstations
 
 base-image: ghcr.io/ublue-os/kinoite-surface
-image-version: '40'
+image-version: '41'
 
 modules:
   - from-file: ./shared/snapd.yml

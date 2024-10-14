@@ -4,7 +4,7 @@ name: router
 description: Router image
 
 base-image: ghcr.io/ublue-os/ucore-minimal
-image-version: '41'
+image-version: stable
 
 modules:
   - type: rpm-ostree
