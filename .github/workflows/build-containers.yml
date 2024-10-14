@@ -40,18 +40,3 @@ jobs:
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
-
-      - name: Setup Image Builder Config
-        run: echo "$IMAGE_BUILDER_CONFIG" > ./config.toml
-        env:
-          IMAGE_BUILDER_CONFIG: ${{ secrets.IMAGE_BUILDER_CONFIG }}
-
-      - name: Build qcow image
-        run: |
-          docker run --rm \
-          --privileged \
-          --security-opt lable=type:unconfined_t \
-          -v $(pwd)/config.toml:/config.toml:ro \
-          quay.io/centos-bootc/bootc-image-builder:latest \
-          --type qcow2 \
-          ghcr.io/kevindurb/${{ matrix.recipe }}

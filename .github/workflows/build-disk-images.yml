@@ -1,0 +1,37 @@
+---
+name: build-disk-images
+on:
+  workflow_dispatch:
+
+jobs:
+  build-containers:
+    name: Build Disk Images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        recipe:
+          - steamdeck
+          - tablet
+          - router
+          - workstation
+          - htpc
+    steps:
+      - name: Setup Image Builder Config
+        run: echo "$IMAGE_BUILDER_CONFIG" > ./config.toml
+        env:
+          IMAGE_BUILDER_CONFIG: ${{ secrets.IMAGE_BUILDER_CONFIG }}
+
+      - name: Build qcow image
+        run: |
+          docker run --rm \
+          --privileged \
+          --security-opt label=type:unconfined_t \
+          -v $(pwd)/config.toml:/config.toml:ro \
+          quay.io/centos-bootc/bootc-image-builder:latest \
+          --type qcow2 \
+          ghcr.io/kevindurb/${{ matrix.recipe }}
