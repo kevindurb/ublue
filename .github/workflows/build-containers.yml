@@ -48,7 +48,7 @@ jobs:
 
       - name: Build qcow image
         run: |
-          docker run --rm -it \
+          docker run --rm \
           --privileged \
           --security-opt lable=type:unconfined_t \
           -v $(pwd)/config.toml:/config.toml:ro \
