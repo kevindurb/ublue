@@ -2,7 +2,7 @@
 name: workstation
 description: My personal image for my workstations
 
-base-image: ghcr.io/ublue-os/kinoite-surface
+base-image: ghcr.io/ublue-os/kinoite-main
 image-version: '40'
 
 modules:
