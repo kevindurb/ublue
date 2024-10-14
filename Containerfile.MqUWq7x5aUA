@@ -1,0 +1,135 @@
+# This stage is responsible for holding onto
+# your config without copying it directly into
+# the final image
+FROM scratch AS stage-files
+COPY ./files /files
+
+# Copy modules
+# The default modules are inside blue-build/modules
+# Custom modules overwrite defaults
+FROM scratch AS stage-modules
+COPY --from=ghcr.io/blue-build/modules:latest /modules /modules
+COPY ./modules /modules
+
+# Bins to install
+# These are basic tools that are added to all images.
+# Generally used for the build process. We use a multi
+# stage process so that adding the bins into the image
+# can be added to the ostree commits.
+FROM scratch AS stage-bins
+COPY --from=gcr.io/projectsigstore/cosign /ko-app/cosign /bins/cosign
+COPY --from=docker.io/mikefarah/yq /usr/bin/yq /bins/yq
+COPY --from=ghcr.io/blue-build/cli:latest-installer /out/bluebuild /bins/bluebuild
+
+# Keys for pre-verified images
+# Used to copy the keys into the final image
+# and perform an ostree commit.
+#
+# Currently only holds the current image's
+# public key.
+FROM scratch AS stage-keys
+COPY cosign.pub /keys/htpc.pub
+
+
+# Main image
+FROM ghcr.io/ublue-os/bazzite-gnome-nvidia:40 AS htpc
+ARG RECIPE=./recipes/htpc.yml
+ARG IMAGE_REGISTRY=localhost
+ARG CONFIG_DIRECTORY="/tmp/files"
+ARG MODULE_DIRECTORY="/tmp/modules"
+ARG IMAGE_NAME="htpc"
+ARG BASE_IMAGE="ghcr.io/ublue-os/bazzite-gnome-nvidia"
+
+# Key RUN
+RUN --mount=type=bind,from=stage-keys,src=/keys,dst=/tmp/keys \
+  mkdir -p /etc/pki/containers/ \
+  mkdir -p /usr/etc/pki/containers/ \
+  && cp /tmp/keys/* /etc/pki/containers/ \
+  && cp /tmp/keys/* /usr/etc/pki/containers/ \
+  && ostree container commit
+
+# Bin RUN
+RUN --mount=type=bind,from=stage-bins,src=/bins,dst=/tmp/bins \
+  mkdir -p /usr/bin/ \
+  && cp /tmp/bins/* /usr/bin/ \
+  && ostree container commit
+
+# Module RUNs
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'rpm-ostree' '{"type":"rpm-ostree","install":["snapd"]}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'snap-symlink' '{"type":"snap-symlink"}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'systemd' '{"type":"systemd","system":{"enabled":["snapd.service"]}}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'rpm-ostree' '{"type":"rpm-ostree","repos":["https://pkgs.tailscale.com/stable/fedora/tailscale.repo"],"install":["tailscale"]}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'systemd' '{"type":"systemd","system":{"enabled":["tailscaled.service"]}}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'rpm-ostree' '{"type":"rpm-ostree","install":["gstreamer1-plugin-libav","gstreamer1-plugin-openh264","gstreamer1-plugins-base","gstreamer1-plugins-good","heif-pixbuf-loader"]}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'default-flatpaks' '{"type":"default-flatpaks","notify":true,"system":{"install":["com.bitwarden.desktop","com.brave.Browser","com.freerdp.FreeRDP","com.github.tchx84.Flatseal","com.moonlight_stream.Moonlight","com.spotify.Client","com.valvesoftware.Steam","io.github.dvlv.boxbuddyrs","io.github.fastrizwaan.WineZGUI","io.github.flattool.Warehouse","io.github.philipk.boilr","it.mijorus.gearlever","md.obsidian.Obsidian","net.davidotek.pupgui2","net.retrodeck.retrodeck","org.fedoraproject.MediaWriter","org.kde.KStyle.Adwaita","org.prismlauncher.PrismLauncher","org.videolan.VLC"]}}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'rpm-ostree' '{"type":"rpm-ostree","install":["gnome-shell-extension-gsconnect"],"remove":[]}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'gnome-extensions' '{"type":"gnome-extensions","install":[615,517,6139]}' \
+  && ostree container commit
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=stage-modules,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli:v0.8.12-build-scripts,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-htpc-40,sharing=locked \
+  /tmp/scripts/run_module.sh 'signing' '{"type":"signing"}' \
+  && ostree container commit
+
+RUN rm -fr /tmp/* /var/* && ostree container commit
+
+# Labels are added last since they cause cache misses with buildah
+LABEL org.blue-build.build-id="92dd2386-96e2-472d-a628-c0d2787f8bf3"
+LABEL org.opencontainers.image.title="htpc"
+LABEL org.opencontainers.image.description="My personal htpc image"
+LABEL io.artifacthub.package.readme-url=https://raw.githubusercontent.com/blue-build/cli/main/README.md

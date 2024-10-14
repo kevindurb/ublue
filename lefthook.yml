@@ -1,0 +1,24 @@
+---
+# dont show the dump from bluebuild cli
+output:
+  - meta
+  - summary
+  - empty_summary
+  - success
+  - failure
+  - execution_info
+  - skips
+
+pre-commit:
+  parallel: true
+  commands:
+    check-htpc:
+      run: bluebuild generate -q ./recipes/htpc.yml > /dev/null
+    check-router:
+      run: bluebuild generate -q ./recipes/router.yml > /dev/null
+    check-steamdeck:
+      run: bluebuild generate -q ./recipes/steamdeck.yml > /dev/null
+    check-tablet:
+      run: bluebuild generate -q ./recipes/tablet.yml > /dev/null
+    check-workstation:
+      run: bluebuild generate -q ./recipes/workstation.yml > /dev/null
