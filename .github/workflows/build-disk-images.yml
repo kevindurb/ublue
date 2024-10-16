@@ -21,6 +21,9 @@ jobs:
           - workstation
           - htpc
     steps:
+      - name: Maximize build space
+        uses: jlumbroso/free-disk-space@v1.3.1
+
       - name: Setup Image Builder Config
         run: echo "$IMAGE_BUILDER_CONFIG" > ./config.toml
         env:
