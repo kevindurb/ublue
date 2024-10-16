@@ -6,4 +6,5 @@ modules:
       - wl-clipboard
       - zsh
       - dnf
+      - bootc
     remove: []

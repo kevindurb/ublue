@@ -39,6 +39,7 @@ jobs:
           quay.io/centos-bootc/bootc-image-builder:latest \
           --type qcow2 \
           --rootfs xfs \
+          --output /output \
           ghcr.io/kevindurb/${{ matrix.recipe }}
 
       - name: Upload image as artifact
