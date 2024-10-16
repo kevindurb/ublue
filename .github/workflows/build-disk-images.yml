@@ -32,7 +32,19 @@ jobs:
           --privileged \
           --security-opt label=type:unconfined_t \
           -v $(pwd)/config.toml:/config.toml:ro \
+          -v $(pwd)/output:/output \
           quay.io/centos-bootc/bootc-image-builder:latest \
           --type qcow2 \
-          --rootfs btrfs \
+          --rootfs xfs \
           ghcr.io/kevindurb/${{ matrix.recipe }}
+
+      - name: Upload image as artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.recipe }}.qcow2
+          path: |
+            ./output/disk.qcow2
+          if-no-files-found: error
+          retention-days: 0
+          compression-level: 0
