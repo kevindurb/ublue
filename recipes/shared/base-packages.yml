@@ -5,4 +5,5 @@ modules:
       - alacritty
       - wl-clipboard
       - zsh
+      - dnf
     remove: []
