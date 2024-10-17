@@ -48,7 +48,7 @@ jobs:
         with:
           name: ${{ matrix.recipe }}.qcow2
           path: |
-            ./output/disk.qcow2
+            ./output/qcow2/disk.qcow2
           if-no-files-found: error
           retention-days: 0
           compression-level: 0
