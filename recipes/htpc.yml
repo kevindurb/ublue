@@ -14,7 +14,7 @@ modules:
   - type: rpm-ostree
     install:
       - gnome-shell-extension-gsconnect
-      - systemd-boot
+      - bootupd
     remove: []
 
   - type: gnome-extensions
