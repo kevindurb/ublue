@@ -1,0 +1,10 @@
+---
+modules:
+  - type: rpm-ostree
+    install:
+      - syncthing
+
+  - type: systemd
+    system:
+      enabled:
+        - syncthing.service
