@@ -3,12 +3,11 @@ name: steamdeck
 description: My personal steam deck image
 
 base-image: ghcr.io/ublue-os/bazzite-deck
-image-version: '40'
+image-version: '41'
 
 modules:
   - from-file: ./shared/snapd.yml
   - from-file: ./shared/codecs.yml
-  - from-file: ./shared/flatpaks.yml
   - from-file: ./shared/syncthing.yml
   - from-file: ./shared/base-packages.yml
 
