@@ -10,9 +10,22 @@ modules:
   - from-file: ./shared/tailscale.yml
   - from-file: ./shared/syncthing.yml
   - from-file: ./shared/remove-firefox.yml
-  - from-file: ./shared/tlp.yml
   - from-file: ./shared/codecs.yml
   - from-file: ./shared/base-packages.yml
+
+  - type: rpm-ostree
+    install:
+      - powertop
+      - tlp
+      - tlp-rdw
+
+  - type: systemd
+    system:
+      enabled:
+        - tlp.service
+      masked:
+        - systemd-rfkill.service
+        - systemd-rfkill.socket
 
   - type: rpm-ostree
     install:
