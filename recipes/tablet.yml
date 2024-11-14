@@ -2,7 +2,7 @@
 name: tablet
 description: My personal image for my surface tablet
 
-base-image: ghcr.io/ublue-os/silverblue-surface
+base-image: ghcr.io/ublue-os/silverblue-main
 image-version: '41'
 
 modules:
