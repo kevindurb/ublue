@@ -12,7 +12,6 @@ modules:
     install:
       - dnsmasq
       - bootc
-      - dnf
 
   - type: files
     files:
