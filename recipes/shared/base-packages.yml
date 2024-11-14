@@ -5,6 +5,5 @@ modules:
       - alacritty
       - wl-clipboard
       - zsh
-      - dnf
       - bootc
     remove: []
