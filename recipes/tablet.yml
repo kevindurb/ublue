@@ -2,30 +2,17 @@
 name: tablet
 description: My personal image for my surface tablet
 
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: '41'
+base-image: ghcr.io/ublue-os/silverblue-surface
+image-version: '40'
 
 modules:
   - from-file: ./shared/snapd.yml
   - from-file: ./shared/tailscale.yml
   - from-file: ./shared/syncthing.yml
   - from-file: ./shared/remove-firefox.yml
+  - from-file: ./shared/tlp.yml
   - from-file: ./shared/codecs.yml
   - from-file: ./shared/base-packages.yml
-
-  - type: rpm-ostree
-    install:
-      - powertop
-      - tlp
-      - tlp-rdw
-
-  - type: systemd
-    system:
-      enabled:
-        - tlp.service
-      masked:
-        - systemd-rfkill.service
-        - systemd-rfkill.socket
 
   - type: rpm-ostree
     install:
