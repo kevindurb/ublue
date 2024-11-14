@@ -3,7 +3,7 @@ name: tablet
 description: My personal image for my surface tablet
 
 base-image: ghcr.io/ublue-os/silverblue-surface
-image-version: '40'
+image-version: '41'
 
 modules:
   - from-file: ./shared/snapd.yml
@@ -12,7 +12,6 @@ modules:
   - from-file: ./shared/remove-firefox.yml
   - from-file: ./shared/tlp.yml
   - from-file: ./shared/codecs.yml
-  - from-file: ./shared/flatpaks.yml
   - from-file: ./shared/base-packages.yml
 
   - type: rpm-ostree
