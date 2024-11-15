@@ -16,6 +16,7 @@ modules:
 
   - type: rpm-ostree
     install:
+      - distrobox
       - gnome-shell-extension-gsconnect
     remove: []
 
