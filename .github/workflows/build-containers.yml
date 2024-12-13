@@ -27,10 +27,6 @@ jobs:
       matrix:
         recipe:
           - steamdeck
-          - tablet
-          - router
-          - workstation
-          - htpc
     steps:
       - name: Build Custom Image
         uses: blue-build/github-action@v1.6.1

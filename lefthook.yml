@@ -18,7 +18,5 @@ pre-commit:
       run: bluebuild generate -q ./recipes/router.yml > /dev/null
     check-steamdeck:
       run: bluebuild generate -q ./recipes/steamdeck.yml > /dev/null
-    check-tablet:
-      run: bluebuild generate -q ./recipes/tablet.yml > /dev/null
     check-workstation:
       run: bluebuild generate -q ./recipes/workstation.yml > /dev/null

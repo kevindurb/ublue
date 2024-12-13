@@ -19,10 +19,6 @@ jobs:
       matrix:
         container:
           - steamdeck
-          - tablet
-          - router
-          - workstation
-          - htpc
     steps:
       - name: Maximize build space
         uses: jlumbroso/free-disk-space@v1.3.1
