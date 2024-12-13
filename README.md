@@ -1,2 +1,2 @@
-# steamdeck
-My build of bazzite for my steam deck
+# ARCHIVED
+Images moved to github.com/kevindurb/bootc
